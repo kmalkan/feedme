@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        card_view:cardCornerRadius="4dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="191dp"
+                android:layout_marginBottom="65dp"
+                android:layout_gravity="bottom">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:contentDescription="@string/image_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/fm_filler"
+                    android:layout_gravity="top"
+                    android:paddingBottom="50dp"
+                    android:cropToPadding="false"
+                    android:layout_centerInParent="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom">
+                    <TextView
+                        android:id="@+id/title"
+                        style="@android:style/TextAppearance.Large.Inverse"
+                        android:textColor="@android:color/primary_text_dark"
+                        android:layout_gravity="bottom"
+                        android:textSize="32sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_selector"
+                        android:lines="1"
+                        tools:text="Title"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentStart="true"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="16dp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="horizontal"
+                android:background="@color/card_bg">
+                <LinearLayout
+                    android:id="@+id/details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/description"
+                        style="@android:style/TextAppearance.Inverse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="sans-serif-condensed"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="16dp"
+                        android:lines="1"
+                        android:textColor="@android:color/secondary_text_light"
+                        tools:text="DescriptionY"/>
+                    <TextView
+                        android:id="@+id/address"
+                        style="@android:style/TextAppearance.Inverse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="sans-serif-condensed"
+                        android:ellipsize="end"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="16dp"
+                        android:lines="1"
+                        android:textColor="@android:color/secondary_text_light"
+                        tools:text="449 E 14th St, New York, NY"/>
+                    <TextView
+                        android:id="@+id/distance"
+                        style="@android:style/TextAppearance.Inverse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:fontFamily="sans-serif-condensed"
+                        android:ellipsize="end"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="16dp"
+                        android:lines="1"
+                        android:textColor="@android:color/tertiary_text_light"
+                        tools:text="0.4 m"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/details2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/categories"
+                        style="@android:style/TextAppearance.Inverse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:textAlignment="gravity"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:lines="1"
+                        android:textColor="@color/material_red_alt"
+                        tools:text="Mexican"
+                        android:gravity="right" />
+                    <TextView
+                        android:id="@+id/price"
+                        style="@android:style/TextAppearance.Inverse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="16dp"
+                        android:lines="1"
+                        android:textColor="@color/material_teal"
+                        tools:text="$$"
+                        android:gravity="right" />
+                    <RatingBar
+                        android:id="@+id/rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="16dp"
+                        android:textColor="@color/material_red_alt"
+                        android:gravity="right"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_marginBottom="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+</LinearLayout>
