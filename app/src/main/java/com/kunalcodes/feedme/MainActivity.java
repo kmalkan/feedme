@@ -1,16 +1,9 @@
 package com.kunalcodes.feedme;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.IntentSender;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -34,16 +27,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.kunalcodes.feedme.adapter.PlaceAdapter;
 import com.kunalcodes.feedme.fragment.PlaceListFragment;
 import com.kunalcodes.feedme.model.Place;
@@ -103,12 +92,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setLogo(R.drawable.feedme_logo_simple);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+        if (toolbar != null) {
+            toolbar.setLogo(R.drawable.feedme_logo_simple);
+            setSupportActionBar(toolbar);
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setHomeButtonEnabled(true);
+            }
         }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
@@ -119,31 +110,35 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // noop
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 2:
-                        fab.hide();
-                        break;
-                    default:
-                        fab.show();
+        if (mViewPager != null) {
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+            mViewPager.setOffscreenPageLimit(mSectionsPagerAdapter.getCount());
+            mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    // noop
                 }
-            }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                // noop
-            }
-        });
-        tabLayout.setupWithViewPager(mViewPager);
+                @Override
+                public void onPageSelected(int position) {
+                    switch (position) {
+                        case 2:
+                            fab.hide();
+                            break;
+                        default:
+                            fab.show();
+                    }
+                }
 
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    // noop
+                }
+            });
+            if (tabLayout != null) {
+                tabLayout.setupWithViewPager(mViewPager);
+            }
+        }
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             private boolean isMap = false;
@@ -243,12 +238,14 @@ public class MainActivity extends AppCompatActivity {
             List<Place> placeList = new ArrayList<>();
             for (int i = 0; i < 20; i++) {
                 Place place = new Place("Test",
+                        null,
                         "Description",
                         null,
                         "Thai",
-                        "0.2 mi",
+                        new LatLng(0, 0),
                         "$$",
-                        "4.5",
+                        2,
+                        4.5f,
                         getResources().getDrawable(R.drawable.fm_filler, null));
                 placeList.add(place);
             }

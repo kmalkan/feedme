@@ -74,10 +74,10 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
         Place place = places.get(position);
         holder.vTitle.setText(place.getTitle());
         holder.vImage.setImageDrawable(place.getCardImageDrawable());
-        holder.vDescription.setText(place.getDescription());
+        holder.vDescription.setText(place.getAddress());
         holder.vDistance.setText(place.getDistance());
         holder.vCategories.setText(place.getCategories());
-        holder.vPrice.setText(place.getPrice());
+        holder.vPrice.setText(toPriceSymbol(place.getPrice()));
         holder.vRating.setRating(place.getRating());
     }
 
@@ -85,5 +85,17 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
     @Override
     public int getItemCount() {
         return places.size();
+    }
+
+    private String toPriceSymbol(int priceLevel) {
+        if (priceLevel == 0) {
+            return "?";
+        }
+
+        StringBuilder builder = new StringBuilder();
+        for(int i=0;i<priceLevel;i++) {
+            builder.append('$');
+        }
+        return builder.toString();
     }
 }

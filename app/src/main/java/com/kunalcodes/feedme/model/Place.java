@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Builder;
 
 /**
@@ -13,9 +14,11 @@ import lombok.experimental.Builder;
  */
 @Builder
 @Data
-@AllArgsConstructor
+@AllArgsConstructor(suppressConstructorProperties = true)
+@NoArgsConstructor
 public class Place {
     private String title;
+    private String fsId;
     private String description;
     private String categories;
     private String distance;
@@ -24,4 +27,5 @@ public class Place {
     private int price;
     private float rating;
     private Drawable cardImageDrawable;
+
 }
